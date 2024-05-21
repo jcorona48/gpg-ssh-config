@@ -1,17 +1,17 @@
-# GPG y SSH
+# GPG and SSH
 
-Este repositorio es para aquellos que quieren que sus commits salgan verified. 
+This repository is for those who want their commits to be verified.
 
-Podras configurarlo con facilidad si sigues los siguientes pasos...
+You can easily configure it by following these steps...
 
-## Configuracion Basica Git
+## Basic Git Configuration
 
 ```bash
 git config --global user.name "Your Name"
 ```
 
 ```bash
-git config --global user.email name@correo.com
+git config --global user.email name@example.com
 ```
 
 ```bash
@@ -22,74 +22,71 @@ git config --global core.editor "code --wait"
 git config --global core.autocrlf input
 ```
 
-## Configurar SSH
-### Generar SSH
+## Configure SSH
+### Generate SSH Key
 
 ```bash
-ssh-keygen -t rsa -b 4096 -C "name@correo.com"
+ssh-keygen -t rsa -b 4096 -C "name@example.com"
 ```
-### Optener Codigo
+### Retrieve SSH Key
 ```bash
 cat ~/.ssh/id_rsa.pub
 ```
 
-### Ir a configurar a github copiando el codigo
+### Go to GitHub and add the SSH key
 
-### Testear conexion
+### Test Connection
 ```bash
 ssh -T git@github.com
 ```
 
-## Configurar GPG
+## Configure GPG
 
-### Generar GPG Key
+### Generate GPG Key
 ```bash
 gpg --full-generate-key
 ```
 
-### Obtener ID
+### Get GPG Key ID
 
 ```bash
 gpg --list-secret-keys --keyid-format=long
 ```
 
-Copia el codigo que esta despues del slash en la seccion de sec
+Copy the code that appears after the slash in the "sec" section.
 
-Ejemplo
+Example
 
 3AA5C34371567BD2 
 
-### Obtener Llave para github
+### Get GPG Key for GitHub
 
 ```bash
 gpg --armor --export 3AA5C34371567BD2
 ```
 
-### Configurar llave en github
+### Configure GPG Key in GitHub
 
 
-## Decirle a git que firme tus commits con gpg
+## Tell Git to sign your commits with GPG
 
-### Git utilice gpg
+### Configure Git to use GPG
 ```bash
 git config --global --unset gpg.format
 ```
 
-### obtener ID gpg 
+### Get GPG Key ID 
 ```bash
 gpg --list-secret-keys --keyid-format=long
-
 ```
 
-### Configurar clave para git
+### Configure GPG Key for Git
 
 ```bash
 git config --global user.signingkey 3AA5C34371567BD2
-
 ```
 
-### Firmar commits con gpg
+### Sign commits with GPG
 ```bash
 git config --global commit.gpgsign true
 ```
-
